@@ -6,9 +6,9 @@ RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
-WORK_MIN = 1
-SHORT_BREAK_MIN = 5
-LONG_BREAK_MIN = 20
+WORK_MIN = 25                 #ADJUST THE WORK TIME HERE  
+SHORT_BREAK_MIN = 5          #ADJUST THE BREAK TIME HERE
+LONG_BREAK_MIN = 30          #ADJUST THE BREAK TIME HERE
 reps = 0
 timer = None
 
