@@ -1,16 +1,21 @@
 from tkinter import *
 import math
+from playsound import playsound
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
 RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
-WORK_MIN = 25                 #ADJUST THE WORK TIME HERE  
-SHORT_BREAK_MIN = 5          #ADJUST THE BREAK TIME HERE
-LONG_BREAK_MIN = 30          #ADJUST THE BREAK TIME HERE
+WORK_MIN = 30
+SHORT_BREAK_MIN = 7
+LONG_BREAK_MIN = 30
 reps = 0
 timer = None
+
+def alarm_sound():
+    playsound('sound.mp3')
+
 
 # ---------------------------- TIMER RESET ------------------------------- # 
 
@@ -34,15 +39,25 @@ def start_timer():
     long_break_sec = LONG_BREAK_MIN * 60
 
     if reps % 8 == 0:
+        alarm_sound()
         count_down(long_break_sec)
         title_label.config(text="Break", fg=RED)
+
     elif reps % 2 == 0:
+        alarm_sound()
         count_down(short_break_sec)
         title_label.config(text="Break", fg=PINK)
-    else:
-        count_down(work_sec)
-        title_label.config(text="Work", fg=GREEN)
 
+
+    else:
+        if reps == 1:
+
+            count_down(work_sec)
+            title_label.config(text="Work", fg=GREEN)
+        else:
+            alarm_sound()
+            count_down(work_sec)
+            title_label.config(text="Work", fg=GREEN)
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 def count_down(count):
